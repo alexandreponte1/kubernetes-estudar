@@ -1,0 +1,20 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+- role: worker
+- role: worker
+kubeadmConfigPatches:
+- |
+  apiVersion: kubeadm.k8s.io/v1beta3
+  kind: ClusterConfiguration
+  metadata:
+    name: config
+  apiServer:
+    timeoutForControlPlane: 4m0s
+  controllerManager: {}
+  scheduler: {}
+
+
+
+# kind create cluster --config kind-example-config.yaml

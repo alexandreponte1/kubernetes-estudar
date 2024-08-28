@@ -1,0 +1,18 @@
+stages:
+  - restart-pods
+
+restart_pods:
+  environment:
+    name: prd
+    url: https://704CAA0B04AAD1E3B6B326228EC2157C.yl4.us-east-1.eks.amazonaws.com
+    kubernetes:
+      namespace: car-oi
+  stage: restart-pods
+  image: $ECR_ADDRESS/gitlab-ci-images:kubectl-1.21.0
+  script:
+    - kubectl rollout restart deployment/car-request-negotiation
+  allow_failure: true
+  only:
+    - develop
+
+

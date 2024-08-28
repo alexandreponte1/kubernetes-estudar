@@ -69,3 +69,12 @@ https://kubernetes.io/docs/reference/kubectl/conventions/
 
 Create a pod and a service
 kubectl run httpd --image=httpd:alpine --port:80 --expose=true
+
+
+
+ k run goku --image=nginx --port=80\n
+ kubectl get pods
+ kubectl expose pods goku --type NodePort
+ k get svc
+ minikube ip
+ curl 192.168.205.11:30860
