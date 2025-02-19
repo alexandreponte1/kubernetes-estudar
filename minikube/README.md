@@ -3,6 +3,11 @@ Caso prefira o minikube é possivel utilizar o podman junto com o minikube.
 minikube config set driver podman
 
 minikube start --driver=hyperkit
+
+or
+
+brew install qemu
+minikube start --driver=qemu
 ```
 
 kubectl get all
