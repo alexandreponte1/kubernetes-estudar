@@ -1,0 +1,49 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: k8s-demo
+  region: us-east-1
+  version: "1.24"
+
+vpc:
+  cidr: 10.0.0.0/16
+  nat:
+    gateway: HighlyAvailable
+
+managedNodeGroups:
+  - name: eks-node-group-managed-nodes
+    instanceType: t2.small
+    desiredCapacity: 3
+    privateNetworking: false
+
+fargateProfiles:
+  - name: acg-fargateeee-development
+    selectors:
+      - namespace: development
+
+availabilityZones: ["us-east-1a", "us-east-1c"] # This is required since in us-east-1 only 2 subnets are created by default (https://eksctl.io/usage/vpc-networking/)
+
+
+
+
+
+
+
+
+
+
+
+
+# eksctl create fargateprofile \
+#     --cluster k8s-demo \
+#     --name my-fargate-profile \
+#     --namespace development \
+#     --labels app=nginx
+
+
+# aws eks create-fargate-profile \
+#     --cluster-name k8s-demo \
+#     --pod-execution-role-arn arn:aws:iam::111122223333:role/role-name \
+#     --fargate-profile-name my-fargate-profile \
+#     --selectors '[{"namespace": "default", "labels": {"labelname1": "labelvalue1"}}]'

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: development
+  
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 10 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx-goku
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+
+
+
+
+##kubectl expose deployment nginx-deployment
